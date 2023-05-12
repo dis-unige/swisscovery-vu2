@@ -109,8 +109,8 @@ export class ethMetagridController {
                         if(gndIds.indexOf(part)===-1)gndIds.push(part);
                     }
                 }
-                //console.log('Authorités GND:')
-                //console.log(gndIds);
+                console.log('Authorités GND:')
+                console.log(gndIds);
             }
             
             
@@ -139,8 +139,8 @@ export class ethMetagridController {
                         if(idrefIds.indexOf(part)===-1)idrefIds.push(part);
                     }
                 }
-                //console.log('Authorités IdRef:')
-                //console.log(idrefIds);
+                console.log('Authorités IdRef:')
+                console.log(idrefIds);
             }
             
  

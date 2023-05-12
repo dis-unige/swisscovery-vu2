@@ -3572,4 +3572,12 @@ prm-alma-other-members prm-service-button [aria-label="Ordinare fotocopie"] {
   display: none;
 }
 
+/* Style pour les liens metagrid */
+.eth-metagrid-poweredby {
+  font-size: small;
+}
+
+.eth-metagrid-links{
+    margin-top: 2.5em;
+}
 

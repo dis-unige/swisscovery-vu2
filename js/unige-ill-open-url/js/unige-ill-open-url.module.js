@@ -45,9 +45,9 @@ angular
                             'pmid' : 'rft.pmid'
                         }
                         
-                        // Switch form type if the reference is for a journal article or a book chapter
+                        // Switch form type if the reference is for journal, a journal article or a book chapter
                         if (angular.isDefined(vm.search['rft.genre']) && 
-                           (vm.search['rft.genre'] == 'article' || (vm.search['rft.genre'] == 'book' && vm.search['rft.atitle'] != '')) ){
+                           (vm.search['rft.genre'] == 'article' || vm.search['rft.genre'] == 'journal' || (vm.search['rft.genre'] == 'book' && vm.search['rft.atitle'] != '')) ){
                             request_service.formData['citationType'] = 'CR';
                             request_service.formFields[2].events.onClick();
                         }
@@ -98,8 +98,8 @@ angular
                             }
                         }
                         
-                        // If it is a book or journal issue add additional details to the comment field
-                        if (angular.isDefined(vm.search['rft.genre']) && (vm.search['rft.genre'] == 'book' || vm.search['rft.genre'] == 'journal') ){
+                        // If it is a book add additional details to the comment field
+                        if (angular.isDefined(vm.search['rft.genre']) && (vm.search['rft.genre'] == 'book') ){
                             var comment = '';
                             if (angular.isDefined(vm.search['rft.volume']) && vm.search['rft.volume'] != '') {
                                 comment = 'Vol: ' + vm.search['rft.volume'];
@@ -124,19 +124,20 @@ angular
                                 request_service.formData['publisher'] = vm.search['rft.place'] + ': ' + vm.search['rft.publisher'];
                         }
                         
-                        // If the reference is for a whole journal issue, tweak fields to be able to pass on the required information.
+                        // If the reference is for a journal, take only some fields for article request.
                         if (angular.isDefined(vm.search['rft.genre']) && vm.search['rft.genre'] == 'journal'){
-                            if (angular.isDefined(vm.search['rft.jtitle']) && vm.search['rft.jtitle'] != ''){
-                                request_service.formData['title'] = vm.search['rft.jtitle'];
-                            }
+                            request_service.formData['publicationDate'] = '';
+                            // if (angular.isDefined(vm.search['rft.jtitle']) && vm.search['rft.jtitle'] != ''){
+                                // request_service.formData['title'] = vm.search['rft.jtitle'];
+                            // }
                             // For whole isues, it's OK if no author is provided
-                            if (request_service.formData['author'] == ''){
-                                request_service.formData['author'] = "N/A";
-                            }
+                            // if (request_service.formData['author'] == ''){
+                                // request_service.formData['author'] = "N/A";
+                            // }
                             // For journal issues, put the ISSN in the ISBN field
-                            if (angular.isDefined(vm.search['rft.issn']) && vm.search['rft.issn'] != ''){
-                                request_service.formData['isbn'] = vm.search['rft.issn'] + ' (ISSN)';
-                            }
+                            // if (angular.isDefined(vm.search['rft.issn']) && vm.search['rft.issn'] != ''){
+                                // request_service.formData['isbn'] = vm.search['rft.issn'] + ' (ISSN)';
+                            // }
                         }
                         
                       }

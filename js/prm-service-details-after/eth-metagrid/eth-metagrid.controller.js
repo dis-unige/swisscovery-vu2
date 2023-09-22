@@ -38,9 +38,17 @@ export class ethMetagridController {
                     let url = resource.link.uri;
 
                     // check whitelist for Metagrid links
-                    if (this.config.whitelist.indexOf(slug) === -1) {
-                        continue;
+                    if (angular.isDefined(this.config.whitelist)){
+                        if (this.config.whitelist.indexOf(slug) === -1) {
+                            continue;
+                        }
                     }
+                    else if (angular.isDefined(this.config.blacklist)){
+                        if (this.config.blacklist.indexOf(slug) > -1) {
+                            continue;
+                        }
+                    }
+                    
 
                     let label = this.ethConfigService.getLabel(this.config, slug);
                     whitelistedMetagridLinks.push({'slug': slug,'url': url, 'label': label});
@@ -109,8 +117,8 @@ export class ethMetagridController {
                         if(gndIds.indexOf(part)===-1)gndIds.push(part);
                     }
                 }
-                console.log('Authorités GND:')
-                console.log(gndIds);
+                //console.log('Authorités GND:')
+                //console.log(gndIds);
             }
             
             
@@ -139,8 +147,8 @@ export class ethMetagridController {
                         if(idrefIds.indexOf(part)===-1)idrefIds.push(part);
                     }
                 }
-                console.log('Authorités IdRef:')
-                console.log(idrefIds);
+                //console.log('Authorités IdRef:')
+                //console.log(idrefIds);
             }
             
  

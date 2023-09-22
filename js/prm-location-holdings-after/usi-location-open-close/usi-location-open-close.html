@@ -1,0 +1,20 @@
+<div class="open-closed-container" ng-if="$ctrl.usilocation.isopen && $ctrl.usilocation.isuge">
+	<div class="open-closed-img">
+		<img src="/discovery/custom/41SLSP_UGE-VU1/img/open_shelf_traced_icon.png" alt="">
+	</div>
+	<div class="unige-open-txt">
+		<span translate='unige.stacks_open'>
+			Open stacks
+		</span>
+	</div>
+</div>
+<div class="open-closed-container" ng-if="!$ctrl.usilocation.isopen && $ctrl.usilocation.isuge">
+	<div class="open-closed-img">
+		<img src="/discovery/custom/41SLSP_UGE-VU1/img/closed_shelf_traced_icon.png" alt="">
+	</div>
+	<div class="unige-closed-txt">
+		<span translate='unige.stacks_closed'>
+			Closed stacks
+		</span>
+	</div>
+</div>

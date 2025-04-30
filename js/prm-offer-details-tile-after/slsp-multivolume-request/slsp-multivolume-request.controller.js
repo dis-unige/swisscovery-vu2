@@ -1,30 +1,45 @@
-//-----------------MultivolumeRequest------------------------------
-
 export class slspMultivolumeRequestController {
     constructor($scope) {
         this.$scope = $scope;
-        this.previousUnavailableResource = null; 
+        this.previousUnavailableVolume = null;
+    }
+
+    $onInit() {
+        this.parentCtrl = this.afterCtrl.parentCtrl;
+        this.domManipulated = false;
     }
 
     $doCheck() {
         try {
-            this.parentCtrl = this.afterCtrl.parentCtrl;
-            const currentUnavailableResource = this.parentCtrl.bestoffer.unavailableResource;
-           
-            if (currentUnavailableResource !== this.previousUnavailableResource) {
-              
-                //console.log(this.parentCtrl);
-             
-                if (currentUnavailableResource !== false) {
-                    //console.log("Request nicht möglich");
+            const currentUnavailableVolume = this.parentCtrl.isNoOfferAfterRefine();
+            const isUnavailableResource = this.parentCtrl.isUnavailableResource();
+
+            //console.log('currentUnavailableVolume: ' + currentUnavailableVolume);
+            //console.log('isUnavailableResource: ' + isUnavailableResource);
+
+            if (!this.domManipulated) {
+                let volumeField = angular.element(document.querySelector('prm-get-it-request .form_item[ng-if="::$ctrl.isCodeEnabledforForm(\'VOLUME\')"]'));
+                let refineButton = angular.element(document.querySelector('span[ng-if="::$ctrl._tempRapidoLocateSerialMultivolumeOffers"]'));
+
+                volumeField.append(refineButton);
+
+                this.domManipulated = true;
+            }
+
+            // Check und Button steuern
+            if (currentUnavailableVolume !== this.previousUnavailableVolume) {
+                if (currentUnavailableVolume === true) {
                     this.disableRequestButton();
                 } else {
-                    //console.log("Request möglich");
                     this.enableRequestButton();
                 }
 
-                this.previousUnavailableResource = currentUnavailableResource; 
+                this.previousUnavailableVolume = currentUnavailableVolume;
             }
+
+            // Klassen hinzufügen/entfernen
+            this.updatePhysicalGetItRequestClass(isUnavailableResource, currentUnavailableVolume);
+
         } catch (e) {
             console.error("***SLSP*** an error occurred: Multivolume Request\n\n");
             console.error(e.message);
@@ -32,16 +47,35 @@ export class slspMultivolumeRequestController {
     }
 
     disableRequestButton() {
-        const requestButton = document.querySelector('button.button-with-icon.button-confirm.md-button.md-primoExplore-theme.md-ink-ripple');
+        const requestButton = angular.element(document.querySelector('button.button-with-icon.button-confirm.md-button.md-primoExplore-theme.md-ink-ripple'));
         if (requestButton) {
-            requestButton.disabled = true;
+            requestButton.attr('disabled', 'disabled');
         }
     }
 
     enableRequestButton() {
-        const requestButton = document.querySelector('button.button-with-icon.button-confirm.md-button.md-primoExplore-theme.md-ink-ripple');
+        const requestButton = angular.element(document.querySelector('button.button-with-icon.button-confirm.md-button.md-primoExplore-theme.md-ink-ripple'));
         if (requestButton) {
-            requestButton.disabled = false;
+            requestButton.removeAttr('disabled');
+        }
+    }
+
+    updatePhysicalGetItRequestClass(isUnavailableResource, isNoOfferAfterRefine) {
+        const physicalGetItRequestDiv = angular.element(document.querySelector('#physicalGetItRequest'));
+        if (physicalGetItRequestDiv) {
+            // Klasse "is-unavailable-resource" hinzufügen/entfernen
+            if (isUnavailableResource) {
+                physicalGetItRequestDiv.addClass('is-unavailbl-resource');
+            } else {
+                physicalGetItRequestDiv.removeClass('is-unavailbl-resource');
+            }
+
+            // Klasse "no-best-offer" hinzufügen/entfernen
+            if (isNoOfferAfterRefine) {
+                physicalGetItRequestDiv.addClass('no-best-offer');
+            } else {
+                physicalGetItRequestDiv.removeClass('no-best-offer');
+            }
         }
     }
 }

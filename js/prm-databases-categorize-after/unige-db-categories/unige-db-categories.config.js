@@ -2,26 +2,61 @@ export const unigeDbCategoriesConfig = {
     // List of subject codes present in 960$$a for online encyclopedias (enc) and reference works (ore).
         // Codes are associated with a term in the databases subject domains. Only codes explicitely defined
         // here will be displayed.
-        baseurl : 'search?pfilter=rtype,exact,books,AND&tab=41SLSP_UGE_MyInst_CI&search_scope=MyInst_and_CI&mode=advanced&offset=0&query=any,contains,',
+        baseurl : 'dbsearch?pfilter=rtype,exact,books,AND&tab=41SLSP_UGE_MyInst_CI&search_scope=MyInst_and_CI&mode=advanced&offset=0&query=any,contains,',
         refcode: {
-            'Anthropologie': {
-                enc: 'ENC_ANT'
-            },
-            'Biologie': {
-                enc: 'ENC_BIO'
-            },
-            'Français': {
-                enc: 'ENC_FRA',
-                ore: 'ORE_FRA'
-            },
-            'Médecine et santé': {
-                ore: 'ORE_MED'
-            },
-            'Sciences économiques': {
-                enc: 'ENC_ECO'
-            },
-            'Sciences sociales': {
-                enc: 'ENC_SOC'
-            }
+            'Allemand': {dic: 'DIC_ALL', enc: 'ENC_ALL'},
+            'Anglais': {dic: 'DIC_ANG', enc: 'ENC_ANG', ore: 'ORE_ANG'},
+            'Anthropologie': {enc: 'ENC_ANT'},
+            'Astronomie': {},
+            'Biochimie': {},
+            'Biologie': {dic: 'DIC_BIO', enc: 'ENC_BIO'},
+            'Chimie': {},
+            'Chinois': {enc: 'ENC_CHN', ore: 'ORE_CHN'},
+            'Coréen': {enc: 'ENC_COR', ore: 'ORE_COR'},
+            'Droit': {dic: 'DIC_DRO', enc: 'ENC_DRO'},
+              'Droit allemand': {},
+              'Droit anglo-saxon': {},
+              'Droit européen': {},
+              'Droit international': {},
+              'Droit suisse': {},
+            'Espagnol': {},
+            'Français': {dic: 'DIC_FRA', enc: 'ENC_FRA', ore: 'ORE_FRA'},
+            'Français Langue Étrangère': {dic: 'DIC_FRL', enc: 'ENC_FRL', ore: 'ORE_FRL'},
+            'Gérontologie': {},
+            'Grec moderne': {dic: 'DIC_GMD', enc: 'ENC_GMD', ore: 'ORE_GMD'},
+            'Histoire': {dic: 'DIC_HIS', enc: 'ENC_HIS', ore: 'ORE_HIS'},
+            'Histoire de l\'Art': {},
+            'Humanités (médecine)': {dic: 'DIC_HUM', enc: 'ENC_HUM', ore: 'ORE_HUM'},
+            'Informatique': {dic: 'DIC_INF'},
+            'Italien': {dic: 'DIC_ITA', enc: 'ENC_ITA', ore: 'ORE_ITA'},
+            'Japonais': {enc: 'ENC_JAP', ore: 'ORE_JAP'},
+            'Linguistique': {},
+            'Mathématiques': {},
+            'Médecine': {dic: 'DIC_MED', enc: 'ENC_MED', ore: 'ORE_MED'},
+            'Musicologie': {},
+            'Patients': {},
+            'Philosophie': {},
+            'Physique': {},
+            'Psychologie': {enc: 'ENC_PSY'},
+            'Relations internationales': {},
+            'Russe': {},
+            'Sciences de la Terre et environnement': {dic: 'DIC_SCT', enc: 'ENC_SCT'},
+            'Sciences de l\'Antiquité': {dic: 'DIC_SCA', enc: 'ENC_SCA'},
+            'Sciences de l\'éducation': {dic: 'DIC_SCE', enc: 'ENC_SCE', ore: 'ORE_SCE'},
+            'Sciences des sexualités': {dic: 'DIC_SDS', enc: 'ENC_SDS', ore: 'ORE_SDS'},
+            'Sciences économiques': {dic: 'DIC_ECO', enc: 'ENC_ECO', ore: 'ORE_ECO'},
+              'Finance': {dic: 'DIC_FIN', enc: 'ENC_FIN', ore: 'ORE_FIN'},
+              'Histoire économique': {dic: 'DIC_HEC', enc: 'ENC_HEC', ore: 'ORE_HEC'},
+              'Management': {dic: 'DIC_MAN', enc: 'ENC_MAN', ore: 'ORE_MAN'},
+              'Statistique': {dic: 'DIC_STA', enc: 'ENC_STA', ore: 'ORE_STA'},
+            'Sciences pharmaceutiques': {},
+            'Sciences sociales': {dic: 'DIC_SOC', enc: 'ENC_SOC', ore: 'ORE_SOC'},
+              'Communication et médias': {},
+              'Démographie': {},
+              'Etudes genre': {dic: 'DIC_EGE', enc: 'ENC_EGE', ore: 'ORE_EGE'},
+              'Géographie': {dic: 'DIC_GEO', enc: 'ENC_GEO', ore: 'ORE_GEO'},
+              'Sociologie': {dic: 'DIC_SGE', enc: 'ENC_SGE', ore: 'ORE_SGE'},
+              'Théologie': {},
+            'Traduction et interprétation': {dic: 'DIC_TRA', enc: 'ENC_TRA', ore: 'ORE_TRA'},
         }
 }

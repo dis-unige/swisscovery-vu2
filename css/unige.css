@@ -446,6 +446,7 @@ prm-service-button > button > span {
   color: #fff !important;
 }
 
+
 /* UNIGE white color for text DEMANDER */
 .section-title > span {
   color: #3a3a3a !important;
@@ -553,11 +554,161 @@ prm-location prm-stack-map .md-button.button-link {
 
 /* Style pour le menu des catégories pour les DBs */
 #dBcategorize {
-  min-width: 300px;
+    min-width: 300px;
 }
+
+.unige-db-categories {
+    background-color: #e9e9e9;
+    border-color: #e1e1e1;
+    padding: 10px;
+}
+
+#dBcategorizeSearchDone {
+    min-width: 300px;
+}
+
+.unige-db-categories ul {
+    list-style-type: none;
+    padding-left: 5px;
+}
+
+.unige-db-categories li {
+    padding-left: 10px;
+    margin-bottom: 5px;
+
+}
+
+.unige-db-categories summary {
+    cursor: pointer;
+}
+
 
 /* désactiver le label sur les thèmes dans la recherche des revues */
 li[translate='nui.journalsearch.category.option3'] {
   display: none;
+}
+
+
+/*Resource type filter bar*/
+
+/* couleur des icones et du texte */
+prm-resource-type-filter-bar .container .box div, prm-resource-type-filter-bar prm-icon {
+  color: #fff !important;
+}
+
+/* couleur du survol du bouton */
+prm-resource-type-filter-bar button.md-button.md-primoExplore-theme.md-ink-ripple:hover {
+    background-color: #393765 !important;
+}
+
+/* Style pour l'affichage du message d'accès aux resources sous license */
+.bcu-fullview-offcampus {
+    margin-top: 1em;
+    padding: 1em 1em 0.5em;
+    background-color: #ffeb3b;
+    color: black;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.03) 0px 1px 0px 0px, rgba(0, 0, 0, 0.07) 0px 5px 5px -3px;
+    box-shadow: rgba(0, 0, 0, 0.03) 0px 1px 0px 0px, rgba(0, 0, 0, 0.07) 0px 5px 5px -3px;
+}
+
+.bcu-fullview-offcampus > div {
+  margin-left: 1em;
+}
+
+.bcu-fullview-offcampus a {
+  color: #0030a0;
+}
+
+prm-full-view-service-container .section-body .bcu-online-feedback-mail {
+  margin-top: 1em;
+}
+
+/*Hide the "Open Knowledge Maps" link fully (facet group and okm link)*/
+
+.okm-full {
+
+    display: none;
+
+}
+
+/*Hide the "Open Knowledge Maps" link in the facet group*/
+
+eth-okm-link-component {
+
+    display: none;
+
+}
+
+/* Puchase Request : Filter libraries list */
+/* To remove all */
+/* md-option[id^=prm_almaPurchaseRequest] {  display:none !important; } */
+/* To remove some IDs */
+/* CODIS */
+md-option[value="112046790005502"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+}
+/* Fond. Hardt */
+md-option[value="112049990005502"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+} 
+/* DBU */
+md-option[value="112049670005502"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+} 
+/* -- */
+md-option[value="--"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+} 
+
+/* Puchase Request : remove type choice */
+
+#form_field_citationType {
+  display:none !important;
+}
+
+/* Puchase Request : remove some types */
+/* LOCKER */
+md-option[value="LOCKER"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+} 
+/* DISK */
+md-option[value="DISK"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+}
+/* EQUIP */
+md-option[value="EQUIP"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+}
+/* MUSICINSTRUMENT */
+md-option[value="MUSICINSTRUMENT"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+}
+/* MICROPHONE */
+md-option[value="MICROPHONE"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+}
+/* WIRE */
+md-option[value="WIRE"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+}
+/* MASTERTHESIS */
+md-option[value="MASTERTHESIS"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+}
+/* PREPRINTS */
+md-option[value="PREPRINTS"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+}
+/* SCORE */
+md-option[value="SCORE"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+}
+/* WEBSITE */
+md-option[value="WEBSITE"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
+}
+/* DISSERTATION */
+md-option[value="DISSERTATION"][id^=prm_almaPurchaseRequest] {
+  display:none !important;
 }
 

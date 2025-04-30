@@ -1,14 +1,26 @@
 <div class="unige-db-categories">
-    <h2 translate="dbcategories.title"></h2>
+    <h2 translate="unige.databasesearch.titlesec"></h2>
     <ul ng-if="$parent.$ctrl.dbOverrideCategories">
-            <li ng-repeat="category in $parent.$ctrl.parentCtrl.dbOverrideCategories" ng-class="category.selected">
-                <a href="{{category.link}}">{{category.term}}</a>
-                <ul ng-if="category.subcategories.length > 0">
-                    <li ng-repeat="subcategory in category.subcategories" ng-class="subcategory.selected">
-                        <a target="_blank" href="{{subcategory.link}}">{{subcategory.term}}</a>
+       <li ng-repeat="category in $parent.$ctrl.parentCtrl.dbOverrideCategories">
+            <details>
+                <summary>{{category.term}}</summary>
+                <ul>
+                    <li ng-class="::{'is-selected': item.selected}">
+                        <a href="{{category.link}}" translate="unige.databasesearch.db"></a>
                     </li>
+                    <li ng-if="category.docs.length > 0" ng-repeat="doc in category.docs" ng-class="::{'is-selected': item.selected}">
+                        <a href="{{doc.link}}">{{doc.term}}</a>
+                    </li>
+                    <span ng-if="category.subcategories.length > 0" ng-repeat="subcategory in category.subcategories" >
+                        <summary ng-if="subcategory.type == '0'" style="cursor: auto; padding-left: 15px">{{subcategory.term}}</summary>
+                        <ul style="padding-left: 15px">
+                            <li ng-if="subcategory.type != '0'" ng-class="::{'is-selected': item.selected}">
+                                <a href="{{subcategory.link}}">{{subcategory.term}}</a>
+                            </li>
+                        </ul>
+                    </span>
                 </ul>
-            </li>
+            </details>
+        </li>
     </ul>
 </div>
-

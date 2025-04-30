@@ -12,9 +12,11 @@ angular
             if ($location.path().toLowerCase() == '/dbsearch') {
                 
                 // Fetch display label translations
-                var encSearchLabel, oreSearchLabel;
+                var dicSearchLabel, encSearchLabel, oreSearchLabel, dbSearchLabel;
+                $translate('unige.databasesearch.dic').then((translation) => {if (angular.isDefined(translation)){dicSearchLabel = translation}});
                 $translate('unige.databasesearch.enc').then((translation) => {if (angular.isDefined(translation)){encSearchLabel = translation}});
                 $translate('unige.databasesearch.ore').then((translation) => {if (angular.isDefined(translation)){oreSearchLabel = translation}});
+                $translate('unige.databasesearch.db').then((translation) => {if (angular.isDefined(translation)){dbSearchLabel = translation}});
                 
                 $scope.$watch(
                     function () {
@@ -31,9 +33,34 @@ angular
                             let dbRefCodes = unigeDbCategoriesConfig.refcode;
                             let dbRefSearchUrl = unigeDbCategoriesConfig.baseurl;
                             let currentViewId = vm.parentCtrl.$stateParams.vid;
-                            vm.parentCtrl.dbOverrideCategories = [];                   
-                            let baseUrl = $location.$$absUrl.replace(/^(.*)query=[^&]*(\&.*databases=).*/, "$1query=contains,dbcategory$2");
-                            let currentSelection = vm.parentCtrl.dbParamArray;
+                            vm.parentCtrl.dbOverrideCategories = [];        
+                            
+                            // Rebuild the base db search base URL in case we're displaying the menu after a custom search           
+                            let baseUrl = $location.$$absUrl.replace(/^(.*\?).*/,"$1") + 'query=contains,dbcategory,&tab=jsearch_slot';
+                            
+                            if (angular.isDefined(vm.parentCtrl.$stateParams.sortby)){
+                                baseUrl = baseUrl + '&sortby=' + vm.parentCtrl.$stateParams.sortby;
+                                // baseUrl = baseUrl + '&sortby=title';
+                            }
+                            if (angular.isDefined(vm.parentCtrl.$stateParams.lang)){
+                                baseUrl = baseUrl + '&lang=' + vm.parentCtrl.$stateParams.lang;
+                            }
+                            if (angular.isDefined(vm.parentCtrl.$stateParams.offset)){
+                                baseUrl = baseUrl + '&offset=' + vm.parentCtrl.$stateParams.offset;
+                            }
+                            baseUrl = baseUrl + '&vid=' + vm.parentCtrl.$stateParams.vid + '&databases=';
+                            
+                            let currentSelection = [];
+                            // If on the original dbsearch page, the currently selected item is present in the dbParamArray object
+                            if (angular.isDefined(vm.parentCtrl.dbParamArray)){
+                                currentSelection = vm.parentCtrl.dbParamArray;
+                            }
+                            // Otherwise we're passing it through the dbCustomSearch URI parameter
+                            else {
+                                currentSelection = $location.search().dbCustomSearch.split('─');
+                            }
+                            
+                            
                             vm.parentCtrl.dbCategories.dbcategory.forEach( (originalCategory) => {
                                 
                                     let newMenuEntry = new Object();
@@ -47,21 +74,34 @@ angular
                                     if (originalCategory.name === currentSelection[0]){
                                         newMenuEntry.selected = 'selected';
                                     }
+                                    newMenuEntry.docs = [];
                                     newMenuEntry.subcategories = [];
                                     
                                     // Check if reference works codes were defined for this topic. If yes, display them.
                                     let refWorksLinks = dbRefCodes[originalCategory.name];
                                     if(angular.isDefined(refWorksLinks)){
+                                        if(angular.isDefined(refWorksLinks.dic)){
+                                            newMenuEntry.docs.push({
+                                                term:dicSearchLabel,
+                                                link:dbRefSearchUrl + refWorksLinks.dic + ',AND&vid=' + currentViewId + '&dbCustomSearch=' + encodeURIComponent(newMenuEntry.term) + '─' + encodeURIComponent(dicSearchLabel),
+                                                selected:(currentSelection[1] == dicSearchLabel) ? 'selected' : false
+                                            });
+                                        }
                                         if(angular.isDefined(refWorksLinks.enc)){
-                                            newMenuEntry.subcategories.push({
-                                                term:encSearchLabel,link:dbRefSearchUrl + refWorksLinks.enc + ',AND&vid=' + currentViewId
+                                            newMenuEntry.docs.push({
+                                                term:encSearchLabel,
+                                                link:dbRefSearchUrl + refWorksLinks.enc + ',AND&vid=' + currentViewId + '&dbCustomSearch=' + encodeURIComponent(newMenuEntry.term) + '─' + encodeURIComponent(encSearchLabel),
+                                                selected:(currentSelection[1] == encSearchLabel) ? 'selected' : false
                                             });
                                         }
                                         if(angular.isDefined(refWorksLinks.ore)){
-                                            newMenuEntry.subcategories.push({
-                                                term:oreSearchLabel,link:dbRefSearchUrl + refWorksLinks.ore + ',AND&vid=' + currentViewId
+                                            newMenuEntry.docs.push({
+                                                term:oreSearchLabel,
+                                                link:dbRefSearchUrl + refWorksLinks.ore + ',AND&vid=' + currentViewId + '&dbCustomSearch=' + encodeURIComponent(newMenuEntry.term) + '─' + encodeURIComponent(oreSearchLabel),
+                                                selected:(currentSelection[1] == oreSearchLabel) ? 'selected' : false
                                             });
                                         }
+
                                     }
                                 
                                     // Add any subcategories if present
@@ -83,7 +123,44 @@ angular
                                             if (subCategory.name === currentSelection[1]){
                                                 newSubMenuEntry.selected = 'selected';
                                             }
+                                            newSubMenuEntry.type = '0';
                                             newMenuEntry.subcategories.push(newSubMenuEntry);
+
+                                            // Check if reference works codes were defined for this subCategory. If yes, display them.
+                                            let refWorksLinks2 = dbRefCodes[subCategory.name];
+                                            if(angular.isDefined(refWorksLinks2)){
+                                                newMenuEntry.subcategories.push({
+                                                    type:'1',
+                                                    term:dbSearchLabel,                                                    
+                                                    link:baseUrl + 'category,' + originalCategory.name + '─' + subCategory.name,
+                                                    selected:(currentSelection[1] == dbSearchLabel) ? 'selected' : false
+                                                });
+                                                if(angular.isDefined(refWorksLinks2.dic)){
+                                                    newMenuEntry.subcategories.push({
+                                                        type:'2',
+                                                        term:dicSearchLabel,
+                                                        link:dbRefSearchUrl + refWorksLinks2.dic + ',AND&vid=' + currentViewId + '&dbCustomSearch=' + encodeURIComponent(newMenuEntry.term) + '─' + encodeURIComponent(dicSearchLabel),
+                                                        selected:(currentSelection[1] == dicSearchLabel) ? 'selected' : false
+                                                    });
+                                                }
+                                                if(angular.isDefined(refWorksLinks2.enc)){
+                                                    newMenuEntry.subcategories.push({
+                                                        type:'3',
+                                                        term:encSearchLabel,
+                                                        link:dbRefSearchUrl + refWorksLinks2.enc + ',AND&vid=' + currentViewId + '&dbCustomSearch=' + encodeURIComponent(newMenuEntry.term) + '─' + encodeURIComponent(encSearchLabel),
+                                                        selected:(currentSelection[1] == encSearchLabel) ? 'selected' : false
+                                                    });
+                                                }
+                                                if(angular.isDefined(refWorksLinks2.ore)){
+                                                    newMenuEntry.subcategories.push({
+                                                        type:'4',
+                                                        term:oreSearchLabel,
+                                                        link:dbRefSearchUrl + refWorksLinks2.ore + ',AND&vid=' + currentViewId + '&dbCustomSearch=' + encodeURIComponent(newMenuEntry.term) + '─' + encodeURIComponent(oreSearchLabel),
+                                                        selected:(newMenuEntry.selected == 'selected') && (currentSelection[1] == oreSearchLabel) ? 'selected' : false
+                                                    });
+                                                }
+
+                                            }
                                         })
                                     }
                                     vm.parentCtrl.dbOverrideCategories.push(newMenuEntry);

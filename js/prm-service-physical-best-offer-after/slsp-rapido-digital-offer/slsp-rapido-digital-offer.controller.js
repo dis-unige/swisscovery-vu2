@@ -12,6 +12,7 @@ export class slspRapidoDigitalOfferController {
 
             this.parentCtrl = this.afterCtrl.parentCtrl;
             this.isDone = false;
+            //console.log(this.parentCtrl);
 
         } catch (e) {
             console.error("***SLSP*** an error occured: Rapido onInit \n\n");
@@ -21,7 +22,7 @@ export class slspRapidoDigitalOfferController {
 
     $doCheck() {
         try {
-
+           
 
             // loader
             const loadingText = document.querySelectorAll('span[translate="rapido.tiles.placeholder.text"]')
@@ -70,9 +71,11 @@ export class slspRapidoDigitalOfferController {
 
                 this.$timeout(() => {
                     let readingRoomPod = document.querySelectorAll('div[ng-if="$ctrl.physicalTileVisible"] prm-service-physical-best-offer .keep_for span');
+                    let pickupInfo = document.querySelectorAll('prm-service-ngrs');
                     let htmlPD = `<span class="reading-Room-Pod" translate="customized.rapido.readingroom"></span>`;
 
                     angular.element(readingRoomPod).after(this.$compile(htmlPD)(this.$scope)).addClass('pod');
+                    angular.element(pickupInfo).addClass('reading-room');
                 }, 20);
             }
 

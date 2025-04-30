@@ -25,19 +25,34 @@ import './prm-location-holdings-after';
 import './prm-offer-details-tile-after';
 import './prm-fines-after';
 import './prm-service-details-after';
+import './prm-location-item-after';
+import './prm-union-catalog-login-after';
+import './prm-opac-after';
+import './prm-facet-exact-after';
+import './prm-citation-after';
+import './prm-send-email-after';
+import './prm-favorites-edit-labels-menu-after';
+import './prm-search-result-tool-bar-after';
+import './prm-search-result-list-after';
+import './prm-top-bar-before';
+import './prm-advanced-search-after';
+import './prm-get-it-request-after';
+import './pickup-anywhere-form-after';
 // added by UNIGE
 import './unige-bib-news';
 import './prm-blank-ill-after';
-import './slsp-location-items-after';
 import './prm-top-nav-bar-links-after';
+import './slsp-alma-viewit-after';
 // UNIGE VU2 PROD, VU2 PSB & VU3 PSB only
 import './prm-databases-categorize-after';
+import './prm-gallery-items-list-after';
 
-// UNIGE VU1 PROD & PSB
-// var app = angular.module('viewCustom', ['angularLoad', 'slspIllSigninOrderAlert', 'ethLocationsAfterModule', 'ethLocationItemsAfterModule', 'slspArchivesHtgi', 'slspArchivesViewit', 'slspHttpInterceptRequests', 'slspUserAreaExpandableAfterModule', 'slspLoanAfterModule', 'slspPersonalInfoAfterModule', 'prmAlmaOtherMembersAfterModule', 'prmServiceNgrsAfterModule', 'prmServicePhysicalBestOfferAfterModule', 'slspHttpInterceptPickupInformation', 'bcuSearchBarAfterModule', 'bcuTabsAndScopesSelectorAfterModule', 'prmServiceButtonAfterModule', 'prmFullViewAfterModule', 'slspRequestAfterModule', 'slspRequestsAfterModule', 'prmAlmaViewitItemsAfterModule', 'prmAlmaOtherUnitsAfterModule', 'prmLoginAfterModule', 'prmLocationHoldingsAfterModule', 'prmOfferDetailsTileAfterModule', 'prmFinesAfterModule', 'prmServiceDetailsAfterModule', 'unigeBibNewsModule', 'unigeIllOpenUrl', 'unigeNonCirculatingLabel', 'unigeTargetBlankFix']);
 
-// UNIGE VU2 PROD
-var app = angular.module('viewCustom', ['angularLoad', 'slspIllSigninOrderAlert', 'ethLocationsAfterModule', 'ethLocationItemsAfterModule', 'slspArchivesHtgi', 'slspArchivesViewit', 'slspHttpInterceptRequests', 'slspUserAreaExpandableAfterModule', 'slspLoanAfterModule', 'slspPersonalInfoAfterModule', 'prmAlmaOtherMembersAfterModule', 'prmServiceNgrsAfterModule', 'prmServicePhysicalBestOfferAfterModule', 'slspHttpInterceptPickupInformation', 'bcuSearchBarAfterModule', 'bcuTabsAndScopesSelectorAfterModule', 'prmServiceButtonAfterModule', 'prmFullViewAfterModule', 'slspRequestAfterModule', 'slspRequestsAfterModule', 'prmAlmaViewitItemsAfterModule', 'prmAlmaOtherUnitsAfterModule', 'prmLoginAfterModule', 'prmLocationHoldingsAfterModule', 'prmOfferDetailsTileAfterModule', 'prmFinesAfterModule', 'prmServiceDetailsAfterModule', 'unigeBibNewsModule', 'unigeIllOpenUrl', 'unigeNonCirculatingLabel', 'unigeDbCategories', 'unigeTargetBlankFix']);
+// UNIGE VU1
+// var app = angular.module('viewCustom', ['angularLoad', 'slspIllSigninOrderAlert', 'ethLocationsAfterModule', 'ethLocationItemsAfterModule', 'slspArchivesHtgi', 'slspArchivesViewit', 'slspHttpInterceptRequests', 'slspUserAreaExpandableAfterModule', 'slspLoanAfterModule', 'slspPersonalInfoAfterModule', 'prmAlmaOtherMembersAfterModule', 'prmServiceNgrsAfterModule', 'prmServicePhysicalBestOfferAfterModule', 'slspHttpInterceptPickupInformation', 'bcuSearchBarAfterModule', 'bcuTabsAndScopesSelectorAfterModule', 'prmServiceButtonAfterModule', 'prmFullViewAfterModule', 'slspRequestAfterModule', 'slspRequestsAfterModule', 'prmAlmaViewitItemsAfterModule', 'prmAlmaOtherUnitsAfterModule', 'prmLoginAfterModule', 'prmLocationHoldingsAfterModule', 'prmOfferDetailsTileAfterModule', 'prmFinesAfterModule', 'prmServiceDetailsAfterModule', 'hsgLocationItemAfterModule', 'prmUnionCatalogLoginAfterModule', 'prmOpacAfterModule', 'prmFacetExactAfterModule', 'prmCitationAfterModule' , 'prmSendEmailAfterModule', 'unigeBibNewsModule', 'unigeIllOpenUrl', 'unigeTargetBlankFix', 'slspAlmaViewitAfterModule']);
 
-// UNIGE VU2 PSB & VU3 PSB
-// var app = angular.module('viewCustom', ['angularLoad', 'slspIllSigninOrderAlert', 'ethLocationsAfterModule', 'ethLocationItemsAfterModule', 'slspArchivesHtgi', 'slspArchivesViewit', 'slspHttpInterceptRequests', 'slspUserAreaExpandableAfterModule', 'slspLoanAfterModule', 'slspPersonalInfoAfterModule', 'prmAlmaOtherMembersAfterModule', 'prmServiceNgrsAfterModule', 'prmServicePhysicalBestOfferAfterModule', 'slspHttpInterceptPickupInformation', 'bcuSearchBarAfterModule', 'bcuTabsAndScopesSelectorAfterModule', 'prmServiceButtonAfterModule', 'prmFullViewAfterModule', 'slspRequestAfterModule', 'slspRequestsAfterModule', 'prmAlmaViewitItemsAfterModule', 'prmAlmaOtherUnitsAfterModule', 'prmLoginAfterModule', 'prmLocationHoldingsAfterModule', 'prmOfferDetailsTileAfterModule', 'prmFinesAfterModule', 'prmServiceDetailsAfterModule', 'unigeBibNewsModule', 'unigeIllOpenUrl', 'unigeLoanPolicyLabelFix', 'unigeDbCategories', 'unigeTargetBlankFix']);
+// UNIGE VU2
+var app = angular.module('viewCustom', ['angularLoad', 'slspIllSigninOrderAlert', 'ethLocationsAfterModule', 'ethLocationItemsAfterModule', 'slspArchivesHtgi', 'slspArchivesViewit', 'slspHttpInterceptRequests', 'slspUserAreaExpandableAfterModule', 'slspLoanAfterModule', 'slspPersonalInfoAfterModule', 'prmAlmaOtherMembersAfterModule', 'prmServiceNgrsAfterModule', 'prmServicePhysicalBestOfferAfterModule', 'slspHttpInterceptPickupInformation', 'bcuSearchBarAfterModule', 'bcuTabsAndScopesSelectorAfterModule', 'prmServiceButtonAfterModule', 'prmFullViewAfterModule', 'slspRequestAfterModule', 'slspRequestsAfterModule', 'prmAlmaViewitItemsAfterModule', 'prmAlmaOtherUnitsAfterModule', 'prmLoginAfterModule', 'prmLocationHoldingsAfterModule', 'prmOfferDetailsTileAfterModule', 'prmFinesAfterModule', 'prmServiceDetailsAfterModule', 'hsgLocationItemAfterModule', 'prmUnionCatalogLoginAfterModule', 'prmOpacAfterModule', 'prmFacetExactAfterModule', 'prmCitationAfterModule' , 'prmSendEmailAfterModule', 'unigeBibNewsModule', 'unigeIllOpenUrl', 'unigeTargetBlankFix', 'slspAlmaViewitAfterModule', 'unigeDbCategories', 'unigeAvatar']);
+
+// SLSP
+// var app = angular.module('viewCustom', ['angularLoad', 'slspIllSigninOrderAlert', 'ethLocationsAfterModule', 'ethLocationItemsAfterModule', 'slspArchivesHtgi', 'slspArchivesViewit', 'slspHttpInterceptRequests', 'slspUserAreaExpandableAfterModule', 'slspLoanAfterModule', 'slspPersonalInfoAfterModule', 'prmAlmaOtherMembersAfterModule', 'prmServiceNgrsAfterModule', 'prmServicePhysicalBestOfferAfterModule', 'slspHttpInterceptPickupInformation', 'bcuSearchBarAfterModule', 'bcuTabsAndScopesSelectorAfterModule', 'prmServiceButtonAfterModule', 'prmFullViewAfterModule', 'slspRequestAfterModule', 'slspRequestsAfterModule', 'prmAlmaViewitItemsAfterModule', 'prmAlmaOtherUnitsAfterModule', 'prmLoginAfterModule', 'prmLocationHoldingsAfterModule', 'prmOfferDetailsTileAfterModule', 'prmFinesAfterModule', 'prmServiceDetailsAfterModule', 'hsgLocationItemAfterModule', 'prmUnionCatalogLoginAfterModule', 'prmOpacAfterModule', 'prmFacetExactAfterModule', 'prmCitationAfterModule' , 'prmSendEmailAfterModule', 'prmFavoritesEditLabelsMenuAfterModule', 'prmSearchResultToolBarAfterModule', 'prmSearchResultListAfterModule', 'prmTopBarBeforeModule', 'prmAdvancedSearchAfterModule', 'prmGetItRequestAfterModule', 'pickupAnywhereFormAfterModule']);
